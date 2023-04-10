@@ -147,16 +147,15 @@
       <div class="hero-body">
         <div align="center">
         <video id="teaser" muted playsinline autoplay loop width="100%">
-          <source src="./static/videos/vrb_initial_website.mp4"
+          <source src="./resources/vrb_initial_v2_compressed.mp4"
                   type="video/mp4">
         </video>
         
-        <!-- <h2 class="title is-5">Input: observation<span style="opacity:0;">xxxxxxxxxxxxxxxxxx</span>Output: future prediction</h2> -->
-        </div>
-  
+        <!-- <h2 class="title is-5">Input: observation<span style="opacity:0;"></span>Output: future prediction</h2> -->
+        </div>  
         <br> 
         <h2 class="subtitle has-text-centered">
-          Given a scene, our approach (VRB) first predicts <strong> visual affordances</strong>, learned from large scale human videos. The robot samples a contact point and a post contact trajectory to execute. 
+          Given a scene, our approach (VRB) learns  <strong> actionable representations </strong> for robot learning. VRB predicts contact points and a post-contact trajectory learned from <strong> human videos </strong>. 
         </h2>
   
       </div>
@@ -190,31 +189,23 @@
     <div class="container">
       <div class="columns is-centered">
         <div class="column is-full-width">
-          <h1 class="title is-2" style="text-align: center; padding-bottom: 10px;">Shelf-Supervised Extraction of Affordances</h1>
-          <h2 class="subtitle is-4" style="text-align: center;">Defining Visual Affordances</h2>
+          <h1 class="title is-2" style="text-align: center; padding-bottom: 10px;">Extracting Affordances Without Extra Annotations</h1>
+          <!-- <h2 class="subtitle is-4" style="text-align: center;">Defining Visual Affordances</h2> -->
 
           <div class="columns is-centered has-text-centered">
           <div class="column is-two-thirds ">
           <div class="content has-text-justified">
             <p>
-              Visual affordances have been studied extensively in computer vision, but it is difficult to directly apply these ideas to robots. In computer vision, affordances are often designed with an embodiment in mind (i.e. specifically for humans), while in robotics, we seek an agent-agnostic affordance to facilitate transfer. Robots primarily need to know where and how to manipulate objects, and we choose to ground our affordances around these crucial details. We thus define the following: 
+              Robot-centric Affordances: While visual affordances have been studied extensively in computer vision, applying them to robotics needs smart tweaks. As we learn from large-scale human videos but apply to robots, we seek an agent-agnostic affordance to facilitate this transfer. Therefore, we define affordance as:
             </p>
           </div>
         </div>
       </div>
-
-          
-  
-          <!-- <div style="text-align: center;">
-            <p>
-              $$\mathrm{Affordance} := \mathrm{Contact \ Point} + \mathrm{PostContact \ Trajectory}$$
-            </p>
-          </div> -->
           <div class="column" style="text-align: center;">
             <img src="resources/affordance_definition.png" alt="Image description" width="60%">
-  
-          </div>
-  
+        </div>
+          <br>
+          <br>
           <h2 class="subtitle is-4" style="text-align: center;">Extracting Visual Affordances from Human Videos</h2>
           <div class="columns is-centered">
             <div class="column is-full" style="text-align: center;">
@@ -222,17 +213,32 @@
               <br>
               <br>
               <div class="columns is-centered has-text-centered">
-                <div class="column is-two-thirds ">
-                <div class="content has-text-justified">
-                    <p style="text-align: center;"> We extract affordances from large scale human video datasets such as <a href="https://ego4d-data.org/">Ego4D</a> and <a href="https://epic-kitchens.github.io/2023"></a> Epic Kitchens. We use off the shelf hand-object interaction detectors to find the contact region and post contact wrist trajectory.</p>
+                <div class="column is-two-thirds">
+                <div class="content has-text-justified interpolation-panel">
+                    <p style="text-align: center;font-size: 18px"> We extract affordances from large scale human video datasets such as <a href="https://ego4d-data.org/">Ego4D</a> and <a href="https://epic-kitchens.github.io/2023"></a> Epic Kitchens. We use off the shelf hand-object interaction detectors to find the contact region and post contact wrist trajectory.</p>
                 </div>
               </div>
             </div>
+            <br>
               
             </div>
           </div>
           <div class="columns is-centered">
-            <div class="column is-full" style="text-align: center;">
+            <div class="columns is-centered">
+              <div class="column is-full" style="text-align: center;">
+                <img src="resources/ego4d_pipeline.jpg" alt="Image description" width="80%">
+                <br>
+                <br>
+  
+                <div class="columns is-centered has-text-left">
+                  <div class="column is-two-thirds">
+                  <div class="content has-text-left interpolation-panel">
+                <p style="text-align: center; font-size: 18px"> <strong>Illustration of annotation pipeline </strong>  (Left) Find the frame with hand-object contact. (Middle) Track the wrist to obtain the post contact trajectory. (Right) Map both to the first human entry frame for reference.</p>
+              </div>
+              </div>
+
+            </div>
+            <!-- <div class="column is-full" style="text-align: center;">
               <video playsinline autoplay loop muted src="./resources/affordance_pipeline.mp4" width="80%" style="border: none;"></video>
               <div class="columns is-centered has-text-centered">
                 <div class="column is-two-thirds ">
@@ -241,21 +247,101 @@
             </div>
           </div>
         </div>
+      </div> -->
+      <div class="columns is-centered">
+        <div class="column is-full" style="text-align: center;">
+          <div class="columns is-centered">
+            <div class="column is-three-quarters">
+              <div class="columns is-centered">
+                <div class="column is-one-quarter has-text-centered">
+                  <video playsinline autoplay loop muted src="./resources/human_vrb.mp4" width="80%" style="border: none;">
+                  </video>
+                </div>
+              </div>
+              <div class="columns is-centered">
+                <div class="column is-three-quarters">
+                  <video playsinline autoplay loop muted src="./resources/contact_wrist_v2.mp4" width="100%" style="border: none;">
+                  </video>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-two-thirds">
+              <div class="content has-text-justified">
+                <div class="interpolation-panel">
+                <p style="text-align: center; font-size: 15px">We first find the contact point using a hand object interaction detector. We find the post contact trajectory by tracking the wrist after the contact frame. Once we have detected these frames, a major issue is that the <strong> the human is still in the scene </strong>, leading to a distribution shift.</p>
+              </div>
+            </div>
+            </div>
+          </div>
+          <br>
+          <br>
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-two-thirds">
+                <div class="content">
+                  <p style="text-align: center; font-size: 18px">Our solution is to simply <strong>map the affordances back to the first frame without the human.</strong></p>
+                </div>
+            </div>
+          </div>
+          <div class="columns is-centered">
+            <div class="column">
+              <video playsinline autoplay loop muted src="./resources/frame_human_v2.mp4" width="70%" style="border: none;"></video>
+            </div>
+          </div>
+
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-two-thirds">
+              <div class="content has-text-justified">
+                <div class="interpolation-panel">
+                <p style="text-align: center; font-size: 16px">We use available camera information to project both the contact points and the post-contact trajectory to the human-agnostic frame. This frame is used as input to our model. </p>
+              </div>
+            </div>
+            </div>
+          </div>
+
+          <br>
+          <h2 class="title is-3">Our Affordance Pipeline</h2>
+          <div class="columns is-centered">
+            <div class="column">
+              <img src="resources/full_pipeline.jpg" alt="Full Pipeline" style="border: 1px; border-radius:1px; width: 60%;">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
           
 
-          <div class="columns is-centered">
-            <div class="column is-full" style="text-align: center;">
-              <img src="resources/ego4d_pipeline.jpg" alt="Image description" width="80%">
-              <br>
-              <br>
 
-              <div class="columns is-centered has-text-centered">
-                <div class="column is-two-thirds ">
-                <div class="content has-text-justified">
-              <p style="text-align: center;"> <strong>Illustration of annotation pipeline on Ego4D </strong>  (Left) Find the frame with hand-object contact. (Middle) Track the wrist to obtain the post contact trajectory. (Right) Map both to the first human entry frame for reference.</p>
             </div>
+      </div>
+    </div>
+  </section>
+  
+
+
+
+  <section class="section" style="width: 100%; margin: 0 auto;">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h3 class="title is-3" style="text-align: center; padding-bottom: 5px;"><strong>VRB: Model</strong></h3>    
+          <div class="columns is-centered">
+            <div class="column is-three-quarters">
+              <!-- <img src="resources/vrb_method.png" alt="VRB Model" style="border: 1px solid rgb(93, 92, 92); border-radius:10px; width: 100%;"> -->
+              <img src="resources/vrb_method.png" alt="VRB Model" style="border: 1px; border-radius:10px; width: 100%;">
             </div>
-            </div>
+          </div>
+          <div class="columns is-centered">
+            <div class="column is-three-quarters has-text-centered">
+              <div class="interpolation-panel">
+                <div class="content">
+                  <p style="font-size: 18px">
+                    Our model takes a human-agnostic frame as input. The contact head outputs a contact heatmap (left) and the trajectory transformer predicts wrist waypoints (orange). This output can be directly used at inference time (with sparse 3D information, such as depth, and robot kinematics).
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -265,25 +351,11 @@
   
 
 
-
-
-
-  <!-- <div class="is-vcentered interpolation-panel">
-    <div class="content has-text-centered">
-        <p style = "font-size: 18px">
-          We perform 20 different tasks in the wild, where input to the robot is a single human video. For each of these, WHIRL is trained for 1-2 hours.
-        </p>
-    </div>
-  </div>  -->
-
-
-
-
-  <section class="section">
+  <section class="section" style="width: 85%; margin: 0 auto;">
     <div class="container">
       <div class="columns is-centered">
         <div class="column is-full-width">
-          <h3 class="title is-3" style="text-align: center; padding-bottom: 10px;"><bold>Individual Task Videos</bold></h3>
+          <h3 class="title is-1" style="text-align: center; padding-bottom: 10px;"><bold>Applications to Robotics</bold></h3>
           
           <tr>
             <td>
@@ -343,35 +415,27 @@
                        style="border-radius:10px; "></video>
              </div>         
             </div>
-            <br>
             </td>
           </tr>
         </div> 
       </div>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-two-thirds ">
+        <div class="content has-text-justified">
+      <p style="text-align: center; font-size: 22px"> We benchmark VRB on <strong> 10+ Tasks, 2 robot morphologies, 4 learning paradigms </strong></p>
+    </div>
+    </div>
+    </div>
     </div>
   </section>
+
+
 
 
   <section class="section">
     <div class="container">
       <div class="columns is-centered">
-        <div class="column is-full-width">
-          <h3 class="title is-3" style="text-align: center; padding-bottom: 10px;"><strong>VRB: Model</strong></h3>
-          <p style="text-align: center;"> Our model takes a human-agnostic frame as input. The contact head ouputs a contact heatmap (left) and the trajectory transformer outputs the predicted wrist waypoints (orange). This outputs can be directly used at inference time (with sparse 3D information, such as depth, and robot kinematics).  </p>
-          <div class="columns is-centered">
-            <div class="column">
-              <img src="resources/vrb_method.png" alt="VRB Model"  style="border: 1px solid rgb(93, 92, 92); border-radius:10px; width: 100%;">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-full-width">
+        <div class="column is-three-quarters">
           <h3 class="title is-3" style="text-align: center; padding-bottom: 10px;"><bold>Visualizing Affordance Model Output</bold></h3>
           
           <tr>
@@ -400,29 +464,30 @@
   <section class="section">
     <div class="container">
       <div class="columns is-centered">
-        <div class="column is-full-width">
-          <h3 class="title is-3" style="text-align: center; padding-bottom: 10px;"><bold>Application of VRB to Robot Learning Paradigms</bold></h3>
+        <div class="column is-three-quarters">
+          <h3 class="title is-3" style="text-align: center; padding-bottom: 10px;"><bold>Robot Learning Paradigms</bold></h3>
           
           <tr>
             <td>
               <div class="columns is-centered">
                 <div class="column is-full" style="text-align: center;">
-                  <img src="resources/robot_paradigms.png" alt="Image description" width="80%">
+                  <img src="resources/robot_paradigms.png" alt="Image description" width="95%">
                   <br>
                   <br>
-    
-                  <div class="columns is-centered has-text-centered">
-                    <div class="column is-two-thirds ">
-                    <div class="content has-text-justified">
-                  <p style="text-align: center;"> <strong> Robot Learning Paradigms </strong>  (Top-Left) Affordance-model driven data collection for offline imitation. (Top-Right) Affordance model-driven reward free exploration. (Bottom-Left) Goal-conditioned policy learning with our affordance model. (Bottom-Right) Using the affordance model outputs to reparameterize actions.</p>
-                </div>
-                </div>
-                </div>
+                  
+                  <div class="column is-centered">
+                    <div class="is-one-third">
+                    <div class="is-vcentered interpolation-panel">
+                      <div class="content has-text-left">
+                        <p style="font-size: 18px">
+                          <strong> Robot Learning Paradigms </strong>  (Top-Left) Affordance-model driven data collection for offline imitation. (Top-Right) Reward free exploration. (Bottom-Left) Goal-conditioned policy learning with our affordance model. (Bottom-Right) Using the affordance model outputs to reparameterize actions.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
                 </div>
               </div>
-
-              <br>
-              <br>
             </td>
           </tr>
         </div> 
@@ -434,13 +499,13 @@
   <section class="section">
     <div class="container">
       <div class="columns is-centered">
-        <div class="column is-full-width">
+        <div class="column is-three-quarters">
           <h3 class="title is-3" style="text-align: center; padding-bottom: 10px;"><strong>Affordance Model-based Data Collection</strong></h3>
-          <div class="columns">
-            <div class="column">
+          <div class="columns is-centered">
+            <div class="column is-centered">
               <video class="center" playsinline autoplay loop muted src="./resources/data_collection.mp4" width="100%" style="border-radius:10px;"></video>
             </div>
-            <div class="column">
+            <div class="column is-centered">
               <img src="./resources/dc_results_2.jpg" alt="Data Collection Results" style="border-radius: 10px; width: 77%;">
             </div>
           </div>
@@ -455,7 +520,7 @@
   <section class="section">
     <div class="container">
       <div class="columns is-centered">
-        <div class="column is-full-width">
+        <div class="column is-three-quarters">
           <h3 class="title is-3" style="text-align: center; padding-bottom: 10px;"><strong>Goal-Conditioned Learning</strong></h3>
           <div class="columns">
             <div class="column">
@@ -483,7 +548,7 @@
   <section class="section">
     <div class="container">
       <div class="columns is-centered">
-        <div class="column is-full-width">
+        <div class="column is-three-quarters">
           <h3 class="title is-3" style="text-align: center; padding-bottom: 10px;"><strong>Reward-Free Exploration</strong></h3>
           <div class="columns is-vcentered custom-interpolation-panel; padding-bottom: 10px">
             <div class="column">
@@ -504,6 +569,23 @@
   </section>
   
 
+  <section class="section">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-three-quarters">
+          <h3 class="title is-3" style="text-align: center; padding-bottom: 10px;"><strong>Visual Affordances as Action Spaces</strong></h3>
+          <div class="columns">
+            <div class="column">
+              <img src="./resources/aff_action_space.png" alt="Affordance Action Space" style="border-radius: 1px; width: 100%;">
+            </div>
+            <div class="column">
+              <img src="./resources/action_space_results.png" alt="Action Space Results" style="border-radius: 10px; width: 80%;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 
   <section class="hero is-light is-small">
@@ -529,7 +611,7 @@
 
   <section class="section">
     <div class="container">
-      <div class="columns is-centered">
+      <div class="columns is-centered is-two-thirds">
         <div class="column is-two-thirds">
           <h3 class="title is-3" style="text-align: center; padding-bottom: 10px;"><strong>Simulation Benchmark</strong></h3>
           <div class="columns">
@@ -581,6 +663,34 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="titile">BibTeX</h2>
+      <pre><code>@inproceedings{bahl2023affordances,
+              title={Affordances from Human Videos as a Versatile Representation for Robotics},
+              author={Bahl, Shikhar and Mendonca, Russell and Chen, Lili and Jain, Unnat and Pathak, Deepak},
+              journal={CVPR},
+              year={2023}
+            }</code></pre>
+    </div>
+  </section>
+  
+  
+  
+  
+  <section class="section">
+    <div class="container is-max-desktop content">
+      <h2 class="titile">Acknowledgements</h2>
+    <div class="is-vcentered interpolation-panel">
+      <div class="container content">
+        <p style = "font-size: 16px">
+          We thank Shivam Duggal, Yufei Ye and Homanga Bharadhwaj for fruitful discussions and are grateful to Shagun Uppal, Ananye Agarwal, Murtaza Dalal and Jason Zhang for comments on early drafts of this paper. RM, LC, and DP are supported by NSF IIS-2024594, ONR MURI N00014-22-1-2773 and ONR N00014-22-1-2096.
+        </p>
+      </div>
+    </div>
+  </div>  
   </section>
 
 <footer class="footer">
